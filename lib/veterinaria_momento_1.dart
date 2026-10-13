@@ -1,3 +1,5 @@
+
+
 class Mascota {
   String nombre;
   String especie; 
@@ -6,15 +8,33 @@ class Mascota {
   String motivoConsulta;
   String diaCita;
 
-  Mascota (this.nombre, this.especie, this.edad, this.antecedenteMedico, this.motivoConsulta, this.diaCita);
+  Mascota ({
+    required this.nombre, 
+    required this.especie,
+    required this.edad,
+    required this.antecedenteMedico, 
+    required this.motivoConsulta, 
+    required this.diaCita,});
 
   void mostrarInformacion() {
-    print('$nombre - $especie - $edad - $antecedenteMedico - $motivoConsulta - $diaCita');
+    print (nombre);
+    print (especie);
+    print (edad);
+    print (antecedenteMedico);
+    print (motivoConsulta);
+    print (diaCita);
   }
 }
 
 void main() {
 
-  Mascota mascota1 = Mascota('Mateo', 'Perro', 5, ['Alergias a las pulgas', 'Dermatitis atópica', 'Vacunas al día'], 'Se muerde mucho las patas', 'lunes 12 de octubre');
+  Mascota mascota1 = Mascota(
+    nombre: 'Mateo', 
+    especie: 'Perro',
+    edad: 5, 
+    antecedenteMedico: ['Alergias a las pulgas', 'Dermatitis atópica', 'Vacunas al día'],
+    motivoConsulta:  'Se muerde mucho las patas',
+    diaCita:  'lunes 12 de octubre'
+    );
   mascota1.mostrarInformacion();
 }
