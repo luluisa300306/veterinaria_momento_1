@@ -26,7 +26,7 @@ class Mascota {
   }
 }
 
-void main() {
+void registrarMascota(pacientes) {
 
   Mascota mascota1 = Mascota(
     nombre: 'Mateo', 

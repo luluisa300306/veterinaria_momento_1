@@ -1,8 +1,8 @@
 import 'dart:io';
 
+import 'package:veterinaria_momento_1/veterinaria_momento_1.dart';
 
-
-void menuMascota() {
+void menuMascota(List<Mascota> pacientes) {
   print('GESTIÓN DE PACIENTES PELUDOS');
   print('-----------------------------');
   print('1.Registrar paciente');
@@ -19,7 +19,7 @@ void menuMascota() {
 
   switch (opcion) {
     case '1':
-    print('La opción seleccionada fue: 1.Registrar paciente');
+    registrarMascota(pacientes);
     break;
 
     case '2':
@@ -50,5 +50,6 @@ void menuMascota() {
 }
 
 void main() {
-  menuMascota();
+  List<Mascota> pacientes = [];
+  menuMascota(pacientes);
 }
