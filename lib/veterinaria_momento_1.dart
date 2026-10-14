@@ -32,12 +32,34 @@ String leerTexto(String pregunta) {
 }
 
 void registrarMascota(List<Mascota> pacientes) {
-  print('¡Bienvenido al registro de citas para tus peluditos');
+  print('\n¡Bienvenido al registro de citas para tus peluditos');
+
   String nombre = leerTexto('¿Como se llama tu peludito?');
   print('Nombre registrado: $nombre');
+
+  String especie = leerTexto('¿Que especie es?');
+  print('Especie registrada: $especie');
+
+  int edad;
+  while (true) {
+    String textoEdad = leerTexto('¿Que edad tiene?');
+    int? edadIngresada = int.tryParse(textoEdad);
+
+    if (edadIngresada != null && edadIngresada >= 0) {
+      edad = edadIngresada;
+      break;
+    }
+
+    print('Escribe una edad valida');
+  }
+
+  print('Edad registrada: $edad');
+ 
   
 }
 
+
+/* prueba
 void main() {
   Mascota mascota1 = Mascota(
     nombre: 'Mateo', 
@@ -48,4 +70,4 @@ void main() {
     diaCita:  'lunes 12 de octubre'
     );
   mascota1.mostrarInformacion();
-}
+}*/
