@@ -71,6 +71,20 @@ void registrarMascota(List<Mascota> pacientes) {
   String diaCita = leerTexto('¿Para que dia requiere la cita?');
   print('La cita quedo  asigniada para el dia: $diaCita');
 
+  Mascota paciente = Mascota(
+  nombre: nombre, 
+  especie: especie, 
+  edad: edad, 
+  antecedenteMedico: antecedentes, 
+  motivoConsulta: motivoConsulta, 
+  diaCita: diaCita,
+  );
+
+  pacientes.add(paciente);
+
+  print('\n¡Paciente registrado correctamente!');
+  paciente.mostrarInformacion();
+
 }
 
 
