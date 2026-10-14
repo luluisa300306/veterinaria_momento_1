@@ -36,7 +36,7 @@ void menuMascota(List<Mascota> pacientes) {
     break;
 
     case '5':
-    print('La opción seleccionada fue: 5. Eliminar paciente');
+    eliminarPaciente(pacientes);
     break;
 
     case '6':

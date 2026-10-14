@@ -176,6 +176,32 @@ void modificarPaciente(List<Mascota> paciente) {
   
 }
 
+void eliminarPaciente(List<Mascota> paciente) {
+  if (paciente.isEmpty) {
+    print('Todavia no hay pacientes registrados');
+    return;
+  }
+
+  String nombreBuscado = leerTexto('Nombre del paciente que quieres eliminar del registro:')
+  .trim();
+
+  Mascota? pacienteAEliminar;
+
+  for(Mascota paciente in paciente) {
+    if (paciente.nombre.trim() == nombreBuscado) {
+      pacienteAEliminar = paciente;
+      break;
+    }
+  }
+
+  if (pacienteAEliminar == null) {
+    print('Paciente no encontrado');
+    return;
+  }
+
+  paciente.remove(pacienteAEliminar);
+    print('Se eliminp correctamente');
+}
 /* prueba
 void main() {
   Mascota mascota1 = Mascota(
