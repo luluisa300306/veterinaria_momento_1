@@ -106,6 +106,7 @@ void consultarPacientes(List<Mascota> pacientes) {
 }
 
 void buscarPaciente(List<Mascota> paciente) {
+
   if (paciente.isEmpty) {
     print('\nTodavia no hay pacientes registrados.');
     return;
@@ -126,6 +127,53 @@ void buscarPaciente(List<Mascota> paciente) {
   if (!encontrado) {
     print('No se encontro un paciente con ese nombre');
   }
+}
+
+void modificarPaciente(List<Mascota> paciente) {
+  String nombreBuscado = leerTexto('Nombre del paciente que necesitas modificar')
+  .trim();
+
+  Mascota? pacienteEncontrado;
+
+  for (Mascota paciente in paciente) {
+    if (paciente.nombre.trim() == nombreBuscado) {
+    pacienteEncontrado = paciente;
+    break;
+  }}
+
+  if (pacienteEncontrado == null) {
+    print('No se encontro ese paciente.');
+    return;
+  }
+
+  pacienteEncontrado.nombre = leerTexto('Nuevo nombre: ');
+  pacienteEncontrado.especie = leerTexto('Nueva especie: ');
+
+  while (true) {
+    String textoEdad = leerTexto('Nueva edad: ');
+    int? nuevaEdad = int.tryParse(textoEdad);
+
+    if (nuevaEdad !=null && nuevaEdad >= 0) {
+      pacienteEncontrado.edad = nuevaEdad;
+      break;
+    }
+
+    print('Escribe una edad valida utilizando numeros enteros');
+  }
+
+  String textoAntecedentes = leerTexto('Nuevos antecedentes, no olvides separarlos por comas:');
+  pacienteEncontrado.antecedenteMedico = textoAntecedentes
+  .split(',')
+  .map ((antecedente) => antecedente.trim())
+  .where ((antedecedente) => antedecedente.isNotEmpty)
+  .toList();
+
+  pacienteEncontrado.motivoConsulta = leerTexto('Nuevo motivo de consulta: ');
+  pacienteEncontrado.diaCita = leerTexto('Reagendamiendo de cita: ');
+
+  print('La informacion del paciente ha sido actualizada: ');
+  pacienteEncontrado.mostrarInformacion();
+  
 }
 
 /* prueba

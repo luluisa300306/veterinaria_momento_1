@@ -32,7 +32,7 @@ void menuMascota(List<Mascota> pacientes) {
     break;
 
     case '4':
-    print('La opción seleccionada fue: 4. Modificar información del paciente');
+    modificarPaciente(pacientes);
     break;
 
     case '5':
