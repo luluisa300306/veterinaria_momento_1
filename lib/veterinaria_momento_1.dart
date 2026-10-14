@@ -55,7 +55,22 @@ void registrarMascota(List<Mascota> pacientes) {
 
   print('Edad registrada: $edad');
  
-  
+  String textoAntecedentes = leerTexto('Escribe sus antecedentes separados por comas: ');
+
+  List<String> antecedentes = textoAntecedentes
+  .split(',')
+  .map((antecedente) => antecedente.trim())
+  .where((antecedente) => antecedente.isNotEmpty)
+  .toList();
+
+  print('Antecedentes registrados: ${antecedentes.join(', ')}');
+
+  String motivoConsulta = leerTexto('¿Que le pasa a tu peludito?');
+  print('El motivo de consulta es: $motivoConsulta');
+
+  String diaCita = leerTexto('¿Para que dia requiere la cita?');
+  print('La cita quedo  asigniada para el dia: $diaCita');
+
 }
 
 
