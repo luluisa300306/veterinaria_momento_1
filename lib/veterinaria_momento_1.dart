@@ -17,12 +17,17 @@ class Mascota {
     required this.diaCita,});
 
   void mostrarInformacion() {
-    print (nombre);
-    print (especie);
-    print (edad);
-    print (antecedenteMedico);
-    print (motivoConsulta);
-    print (diaCita);
+    String antecedentes = antecedenteMedico.isEmpty
+    ? 'Ninguno reportado'
+    : antecedenteMedico.join(',');
+
+    print ('\n----FICHA DEL PANCIENTE----');
+    print ('Nombre: $nombre');
+    print ('Especie: $especie');
+    print ('Edad: $edad');
+    print ('Antecedentes Medicos: $antecedentes');
+    print ('Motivo de consulta: $motivoConsulta');
+    print ('Dia de la cita: $diaCita');
   }
 }
 
@@ -87,6 +92,18 @@ void registrarMascota(List<Mascota> pacientes) {
 
 }
 
+void consultarPacientes(List<Mascota> pacientes) {
+  if (pacientes.isEmpty) {
+    print('\nTodavia no hay pacientes registrados.');
+    return;
+  }
+
+  print('\n---PACIENTES REGISTRADOS---');
+  for (Mascota paciente in pacientes) {
+    paciente.mostrarInformacion();
+    print('');
+  }
+}
 
 /* prueba
 void main() {
