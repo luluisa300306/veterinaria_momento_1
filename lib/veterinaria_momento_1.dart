@@ -1,4 +1,4 @@
-
+import 'dart:io';
 
 class Mascota {
   String nombre;
@@ -26,8 +26,19 @@ class Mascota {
   }
 }
 
-void registrarMascota(pacientes) {
+String leerTexto(String pregunta) {
+  stdout.write(pregunta);
+  return stdin.readLineSync() ?? '';
+}
 
+void registrarMascota(List<Mascota> pacientes) {
+  print('¡Bienvenido al registro de citas para tus peluditos');
+  String nombre = leerTexto('¿Como se llama tu peludito?');
+  print('Nombre registrado: $nombre');
+  
+}
+
+void main() {
   Mascota mascota1 = Mascota(
     nombre: 'Mateo', 
     especie: 'Perro',
