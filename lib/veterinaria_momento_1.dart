@@ -105,6 +105,29 @@ void consultarPacientes(List<Mascota> pacientes) {
   }
 }
 
+void buscarPaciente(List<Mascota> paciente) {
+  if (paciente.isEmpty) {
+    print('\nTodavia no hay pacientes registrados.');
+    return;
+  }
+
+  String nombreBuscado = leerTexto('Nombre del paciente:')
+  .trim();
+
+  bool encontrado = false;
+
+  for (Mascota paciente in paciente) {
+    if (paciente.nombre.trim() == nombreBuscado) {
+      paciente.mostrarInformacion();
+      encontrado = true;
+    }
+  }
+
+  if (!encontrado) {
+    print('No se encontro un paciente con ese nombre');
+  }
+}
+
 /* prueba
 void main() {
   Mascota mascota1 = Mascota(
