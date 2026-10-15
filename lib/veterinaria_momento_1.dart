@@ -75,7 +75,9 @@ void registrarMascota(List<Mascota> pacientes) {
       break;
     }
 
-    print('Escribe una edad valida');
+    else {
+      print('Escribe una edad valida');
+    }
   }
 
   print('Edad registrada: $edad');
@@ -152,7 +154,12 @@ void buscarPaciente(List<Mascota> pacientes) {
 }
 
 void modificarPaciente(List<Mascota> pacientes) {
-  String nombreBuscado = leerTexto('Nombre del paciente que necesitas modificar')
+  if (pacientes.isEmpty) {
+    print('Aun no hay pacientes registrados.');
+    return;
+  }
+
+  String nombreBuscado = leerTexto('Nombre del paciente que necesitas modificar:')
   .trim();
 
   Mascota? pacienteEncontrado;
@@ -168,8 +175,24 @@ void modificarPaciente(List<Mascota> pacientes) {
     return;
   }
 
-  pacienteEncontrado.nombre = leerTexto('Nuevo nombre: ');
-  pacienteEncontrado.especie = leerTexto('Nueva especie: ');
+  String nuevoNombre;
+  do{
+    nuevoNombre = leerTexto('Nuevo nombre').trim();
+    if (nuevoNombre.isEmpty) {
+      print('El nombre ni puede estar vacio.');
+    }
+  } while (nuevoNombre.isEmpty);
+  pacienteEncontrado.nombre = nuevoNombre;
+
+  String nuevaEspecie;
+  do {
+    nuevaEspecie = leerTexto('Nueva especie: ').trim();
+    if (nuevaEspecie.isEmpty) {
+      print('El tipo de especie no puede estar vacio.');
+    } 
+  } while (nuevaEspecie.isEmpty);
+  pacienteEncontrado.especie = nuevaEspecie;
+
 
   while (true) {
     String textoEdad = leerTexto('Nueva edad: ');
