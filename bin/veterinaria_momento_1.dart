@@ -4,6 +4,7 @@ import 'package:veterinaria_momento_1/veterinaria_momento_1.dart';
 
 void menuMascota(List<Mascota> pacientes) {
 
+  while (true) {
   print('GESTIÓN DE PACIENTES PELUDOS');
   print('-----------------------------');
   print('1.Registrar paciente');
@@ -14,7 +15,7 @@ void menuMascota(List<Mascota> pacientes) {
   print('6. Mostrar Resumen');
   print('0. Salir');
   print('-----------------------------');
-  
+
   stdout.write('Selecciones una opción:');
   String? opcion = stdin.readLineSync();
 
@@ -40,17 +41,18 @@ void menuMascota(List<Mascota> pacientes) {
     break;
 
     case '6':
-    print('La opción seleccionada fue: 6. Mostrar Resumen');
+    mostrarResumen(pacientes);
     break;
 
     case '0':
-    print('La opción seleccionada fue: 0. Salir');
+    print('Saliste del sistema. ¡Hasta pronto!');
     return;
 
     default: 
     print('Opción no válida. Por favor, elige nuevamente un numero del menu.');
     break;
   }
+  } 
 }
 
 void main() {

@@ -40,10 +40,28 @@ void registrarMascota(List<Mascota> pacientes) {
   print('\n¡Bienvenido al registro de citas para tus peluditos');
 
   String nombre = leerTexto('¿Como se llama tu peludito?');
-  print('Nombre registrado: $nombre');
+  while (true) {
+    nombre = leerTexto('¿Como se llama tu peludito?').trim();
+
+    if (nombre.isNotEmpty) {
+      break;
+    }
+
+    print('El nombre no puede estar vacio');
+  }
 
   String especie = leerTexto('¿Que especie es?');
-  print('Especie registrada: $especie');
+
+  while (true){
+    especie = leerTexto('¿Que especie es?').trim();
+
+    if (especie.isNotEmpty) {
+      break;
+    }
+
+    print('La especie no puede');
+  }
+  
 
   int edad;
   while (true) {
@@ -105,9 +123,9 @@ void consultarPacientes(List<Mascota> pacientes) {
   }
 }
 
-void buscarPaciente(List<Mascota> paciente) {
+void buscarPaciente(List<Mascota> pacientes) {
 
-  if (paciente.isEmpty) {
+  if (pacientes.isEmpty) {
     print('\nTodavia no hay pacientes registrados.');
     return;
   }
@@ -117,8 +135,8 @@ void buscarPaciente(List<Mascota> paciente) {
 
   bool encontrado = false;
 
-  for (Mascota paciente in paciente) {
-    if (paciente.nombre.trim() == nombreBuscado) {
+  for (Mascota paciente in pacientes) {
+    if (paciente.nombre.trim().toLowerCase() == nombreBuscado.trim().toLowerCase()) {
       paciente.mostrarInformacion();
       encontrado = true;
     }
@@ -129,13 +147,13 @@ void buscarPaciente(List<Mascota> paciente) {
   }
 }
 
-void modificarPaciente(List<Mascota> paciente) {
+void modificarPaciente(List<Mascota> pacientes) {
   String nombreBuscado = leerTexto('Nombre del paciente que necesitas modificar')
   .trim();
 
   Mascota? pacienteEncontrado;
 
-  for (Mascota paciente in paciente) {
+  for (Mascota paciente in pacientes) {
     if (paciente.nombre.trim() == nombreBuscado) {
     pacienteEncontrado = paciente;
     break;
@@ -176,7 +194,7 @@ void modificarPaciente(List<Mascota> paciente) {
   
 }
 
-void eliminarPaciente(List<Mascota> paciente) {
+void eliminarPaciente(List<Mascota> pacientes) {
   if (paciente.isEmpty) {
     print('Todavia no hay pacientes registrados');
     return;
@@ -202,6 +220,39 @@ void eliminarPaciente(List<Mascota> paciente) {
   paciente.remove(pacienteAEliminar);
     print('Se eliminp correctamente');
 }
+
+void mostrarResumen(List<Mascota> pacientes) {
+  if (pacientes.isEmpty) {
+    print('Todavia no hay pacientes registrados');
+    return;
+  }
+
+  Set<String> especies = {};
+  Map<String, int> cantidadPorEspecie = {};
+
+  for (Mascota paciente in pacientes) {
+    especies.add(paciente.especie);
+
+    cantidadPorEspecie[paciente.especie] = (cantidadPorEspecie[paciente.especie] ?? 0) + 1;
+  }
+
+  print('\n---RESUMEN DE PACIENTES---');
+  print('Total de pacientes: ${pacientes.length}');
+  print('Especies registradas: ${especies.join(',')}');
+  print('Paciente por especie:');
+
+  for (String especie in cantidadPorEspecie.keys) {
+    print('$especie: ${cantidadPorEspecie[especie]}');
+  }
+
+}
+
+
+
+
+
+
+
 /* prueba
 void main() {
   Mascota mascota1 = Mascota(
