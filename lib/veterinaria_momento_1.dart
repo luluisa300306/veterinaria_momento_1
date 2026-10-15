@@ -19,7 +19,7 @@ class Mascota {
   void mostrarInformacion() {
     String antecedentes = antecedenteMedico.isEmpty
     ? 'Ninguno reportado'
-    : antecedenteMedico.join(',');
+    : antecedenteMedico.join(', ');
 
     print ('\n----FICHA DEL PANCIENTE----');
     print ('Nombre: $nombre');
@@ -28,6 +28,7 @@ class Mascota {
     print ('Antecedentes Medicos: $antecedentes');
     print ('Motivo de consulta: $motivoConsulta');
     print ('Dia de la cita: $diaCita');
+    print('-------------------------------');
   }
 }
 
@@ -39,7 +40,8 @@ String leerTexto(String pregunta) {
 void registrarMascota(List<Mascota> pacientes) {
   print('\n¡Bienvenido al registro de citas para tus peluditos');
 
-  String nombre = leerTexto('¿Como se llama tu peludito?');
+  String nombre;
+
   while (true) {
     nombre = leerTexto('¿Como se llama tu peludito?').trim();
 
@@ -50,7 +52,7 @@ void registrarMascota(List<Mascota> pacientes) {
     print('El nombre no puede estar vacio');
   }
 
-  String especie = leerTexto('¿Que especie es?');
+  String especie;
 
   while (true){
     especie = leerTexto('¿Que especie es?').trim();
@@ -112,7 +114,7 @@ void registrarMascota(List<Mascota> pacientes) {
 
 void consultarPacientes(List<Mascota> pacientes) {
   if (pacientes.isEmpty) {
-    print('\nTodavia no hay pacientes registrados.');
+    print('Todavia no hay pacientes registrados.');
     return;
   }
 
@@ -137,8 +139,10 @@ void buscarPaciente(List<Mascota> pacientes) {
 
   for (Mascota paciente in pacientes) {
     if (paciente.nombre.trim().toLowerCase() == nombreBuscado.trim().toLowerCase()) {
+      print('¡Paciente encontrado!');
       paciente.mostrarInformacion();
       encontrado = true;
+      break;
     }
   }
 
@@ -195,18 +199,19 @@ void modificarPaciente(List<Mascota> pacientes) {
 }
 
 void eliminarPaciente(List<Mascota> pacientes) {
-  if (paciente.isEmpty) {
-    print('Todavia no hay pacientes registrados');
+  if (pacientes.isEmpty) {
+    print('\nTodavia no hay pacientes registrados');
     return;
   }
 
-  String nombreBuscado = leerTexto('Nombre del paciente que quieres eliminar del registro:')
+  String nombreBuscado = 
+  leerTexto('Nombre del paciente que quieres eliminar del registro:')
   .trim();
 
   Mascota? pacienteAEliminar;
 
-  for(Mascota paciente in paciente) {
-    if (paciente.nombre.trim() == nombreBuscado) {
+  for(Mascota paciente in pacientes) {
+    if (paciente.nombre.trim().toLowerCase() == nombreBuscado.toLowerCase()) {
       pacienteAEliminar = paciente;
       break;
     }
@@ -217,13 +222,13 @@ void eliminarPaciente(List<Mascota> pacientes) {
     return;
   }
 
-  paciente.remove(pacienteAEliminar);
-    print('Se eliminp correctamente');
+  pacientes.remove(pacienteAEliminar);
+    print('Se elimino correctamente');
 }
 
 void mostrarResumen(List<Mascota> pacientes) {
   if (pacientes.isEmpty) {
-    print('Todavia no hay pacientes registrados');
+    print('\nTodavia no hay pacientes registrados');
     return;
   }
 
@@ -231,9 +236,12 @@ void mostrarResumen(List<Mascota> pacientes) {
   Map<String, int> cantidadPorEspecie = {};
 
   for (Mascota paciente in pacientes) {
-    especies.add(paciente.especie);
+    String especie = paciente.especie.trim().toLowerCase();
 
-    cantidadPorEspecie[paciente.especie] = (cantidadPorEspecie[paciente.especie] ?? 0) + 1;
+    especies.add(especie);
+
+    cantidadPorEspecie[especie] = 
+    (cantidadPorEspecie[especie] ?? 0) + 1;
   }
 
   print('\n---RESUMEN DE PACIENTES---');
@@ -246,12 +254,6 @@ void mostrarResumen(List<Mascota> pacientes) {
   }
 
 }
-
-
-
-
-
-
 
 /* prueba
 void main() {
